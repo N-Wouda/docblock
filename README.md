@@ -1,4 +1,4 @@
-# docblock
+# Docblock
 
 [![PyPI version](https://badge.fury.io/py/docblock.svg)](https://badge.fury.io/py/docblock)
 [![CI](https://github.com/N-Wouda/docblock/actions/workflows/CI.yaml/badge.svg?branch=main)](https://github.com/N-Wouda/docblock/actions/workflows/CI.yaml)
