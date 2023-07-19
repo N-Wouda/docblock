@@ -1,12 +1,14 @@
 import pathlib
-from typing import Union
+from typing import Dict, List, Union
+
+_ParsedType = Dict[str, List]
 
 
-def parse(code: str):
+def parse(code: str) -> _ParsedType:
     """
     TODO
     """
-    pass
+    return {}
 
 
 def parse_file(loc: Union[pathlib.Path, str]):
