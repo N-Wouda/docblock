@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
   release:
     types: [ created ]
 
@@ -47,8 +47,8 @@ jobs:
       - name: Run pre-commit
         run: poetry run pre-commit run --all-files
       - uses: codecov/codecov-action@v3
-        # with:
-        #   token: ${{ secrets.CODECOV_TOKEN }}
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
 
   deploy:
     needs: build
