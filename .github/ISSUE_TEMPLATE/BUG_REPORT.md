@@ -30,6 +30,7 @@ If your problem has been fixed in an unreleased version, you might be able to us
 
 If the issue has not been resolved, please file it in the issue tracker.
 Make sure to include the version of Python you are using, and the version of `docblock` you run.
+You can copy-paste the output of `import docblock; docblock.show_versions()` to achieve this.
 
 #### Expected Output
 
