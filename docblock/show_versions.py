@@ -12,8 +12,8 @@ def show_versions():
     Calling this function should print information like the following
     (dependency versions in your local installation will likely differ):
 
-    >>> import pyvrp
-    >>> pyvrp.show_versions()
+    >>> import docblock
+    >>> docblock.show_versions()
     INSTALLED VERSIONS
     ------------------
      docblock: 0.0.1
