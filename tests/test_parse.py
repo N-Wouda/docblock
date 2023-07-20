@@ -10,6 +10,7 @@ def test_example_namespace():
         "test::Test": ["Class documentation"],
         "test::Test::test": ["Test docstring"],
         "test::Test::other": ["Short one-line docstring."],
+        "test::nested::Test": ["Nested class documentation."],
     }
 
     assert parse_file("tests/examples/namespace.h") == expected

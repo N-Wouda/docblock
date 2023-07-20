@@ -17,3 +17,11 @@ class Test
     void other();
 }
 };  // namespace test
+
+namespace test::nested
+{
+/**
+ * Nested class documentation.
+ */
+class Test;
+};  // namespace test::nested
