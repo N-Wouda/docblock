@@ -28,10 +28,8 @@ def strip_doc(doc: str) -> str:
 
     def clean(line):
         line = line.strip()
-
         if line.startswith("*"):
             line = line[2:] if line.startswith("* ") else line[1:]
-
         return line.rstrip()
 
     return "\n".join(map(clean, lines)).strip()
