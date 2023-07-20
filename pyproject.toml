@@ -59,6 +59,7 @@ addopts = "--cov=. --cov-report=xml"
 
 [tool.coverage.run]
 omit = [
+    "docblock/show_versions.py",  # only prints debug information
     "*/tests/*",
 ]
 
