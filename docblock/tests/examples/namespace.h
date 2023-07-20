@@ -1,8 +1,11 @@
-// Simple namespace example. This tests if the function documentation for
-// test::Test::test is parsed correctly.
+// Simple namespace example. This tests if the documentation for test::Test and
+// test::Test::test are parsed correctly.
 
 namespace test
 {
+/**
+ * Class documentation
+ */
 class Test
 {
     /**
