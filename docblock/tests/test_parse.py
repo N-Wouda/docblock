@@ -7,8 +7,8 @@ def test_parse_empty_string_returns_empty():
 
 def test_example_namespace():
     expected = {
-        "test::Test": "Class documentation",
-        "test::Test::test": "Test docstring",
+        "test::Test": ["Class documentation"],
+        "test::Test::test": ["Test docstring"],
     }
 
     assert parse_file("docblock/tests/examples/namespace.h") == expected
@@ -22,5 +22,17 @@ def test_example_multiline():
         "Like so.",
     ]
 
-    expected = {"Test::test": "\n".join(parts)}
+    expected = {"Test::test": ["\n".join(parts)]}
     assert parse_file("docblock/tests/examples/multiline.h") == expected
+
+
+def test_example_overload():
+    expected = {
+        "test": [
+            "This function takes a single argument.",
+            "This function takes two arguments.",
+            "This function takes three arguments.",
+        ]
+    }
+
+    assert parse_file("docblock/tests/examples/overload.h") == expected

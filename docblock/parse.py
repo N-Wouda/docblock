@@ -1,7 +1,7 @@
 import pathlib
 from typing import Dict, List, Union
 
-_ParsedType = Dict[str, List]
+_ParsedType = Dict[str, List[str]]
 
 
 def parse(code: str) -> _ParsedType:
