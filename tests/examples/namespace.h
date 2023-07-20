@@ -17,7 +17,7 @@ class Test
     void other();
 
     void noDocumentation();  // should not show up in parse result
-}
+};
 };  // namespace test
 
 namespace test::nested

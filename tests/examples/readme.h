@@ -22,5 +22,5 @@ public:
      * A method.
      */
     void aMethod() const;
-}
+};
 };  // namespace test

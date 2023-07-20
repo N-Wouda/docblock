@@ -50,7 +50,7 @@ public:
      * A method.
      */
     void aMethod() const;
-}
+};
 };  // namespace test
 ```
 This file may be parsed as

@@ -1,10 +1,15 @@
-// Real-world example from PyVRP.
+// Real-world example from PyVRP, lightly modified to provide certain
+// class definitions.
 
 #ifndef PYVRP_COSTEVALUATOR_H
 #define PYVRP_COSTEVALUATOR_H
 
-#include "Measure.h"
-#include "Solution.h"
+class Cost
+{
+};
+class Load;
+class Duration;
+class Solution;
 
 namespace pyvrp
 {

@@ -78,4 +78,5 @@ def test_example_readme():
         "test::Test::Test": ["First constructor", "Second constructor"],
         "test::Test::aMethod": ["A method."],
     }
+
     assert parse_file("tests/examples/readme.h") == expected
