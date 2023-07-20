@@ -13,7 +13,7 @@ The package assumes documentation blocks are formatted using C-style comments, a
 void func();
 ```
 That is, the documentation block starts with `/*` or `/**`, and ends with `*/`.
-Any starting `*` on documentation lines in the block are allowed, but not required.
+Any starting `*` on documentation lines in the block are allowed, but not required unless you care about significant whitespace.
 > To avoid parsing issues, non-documentation block comments SHOULD NOT use C-style comments. 
 
 The `docblock` package is a pure Python package and depends only on `pyparsing`.

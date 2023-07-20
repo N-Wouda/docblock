@@ -80,3 +80,18 @@ def test_example_readme():
     }
 
     assert parse_file("tests/examples/readme.h") == expected
+
+
+def test_example_diversity():
+    expected = {
+        "pyvrp::diversity::brokenPairsDistance": [
+            "Parameters\n"
+            "----------\n"
+            "first\n"
+            "    First solution.\n"
+            "second\n"
+            "    Second solution."
+        ]
+    }
+
+    assert parse_file("tests/examples/diversity.h") == expected

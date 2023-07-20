@@ -9,7 +9,7 @@ def test_strip_open_close_tags():
     assert strip_doc("/* test */") == "test"
 
 
-def test_strip_whitespace():
+def test_strip_whitespace_and_star():
     assert strip_doc("/**   * test\n  * test */") == "test\ntest"
     assert strip_doc("/* * test\n * test\n **test */") == "test\ntest\n*test"
 
