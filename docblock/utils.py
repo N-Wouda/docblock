@@ -1,11 +1,28 @@
-def strip_doc(comment: str) -> str:
+def strip_doc(doc: str) -> str:
     """
-    TODO
+    Strips a C-style documentation block of the opening and closing tags, and
+    any continuation in multiline blocks. For example,
+    ```
+    /**
+     *  Test
+     */
+    ```
+    is stripped to ``Test``.
+
+    Parameters
+    ----------
+    doc
+        The documentation block to strip.
+
+    Returns
+    -------
+    str
+        The stripped documentation block.
     """
-    if comment == "/**/" or comment == "/***/":
+    if doc == "/**/" or doc == "/***/":
         return ""
 
-    lines = comment.splitlines()
+    lines = doc.splitlines()
     lines[0] = lines[0].replace("/**", "").replace("/*", "")
     lines[-1] = lines[-1].replace("*/", "")
 
