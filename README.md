@@ -53,18 +53,20 @@ public:
 };
 };  // namespace test
 ```
-This file may be parsed as
+This file may be parsed as:
 ```python
 from docblock import parse_file
 
 res = parse_file("test.h")
 ```
-This is pretty-printed as
+Now, `res` contains:
 ```python
 >>> print(res)
-{'test': ['Test namespace.'],
-             'test::Test::Test': ['First constructor', 'Second constructor'],
-             'test::Test::aMethod': ['A method.']}
+{
+    'test': ['Test namespace.'],
+    'test::Test::Test': ['First constructor', 'Second constructor'],
+    'test::Test::aMethod': ['A method.']
+}
 ```
 Observe that `docblock` understands scoping, and returns docstrings using qualified names.
 For overloads, multiple docstrings are returned: one for each documented overload.
