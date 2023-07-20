@@ -7,7 +7,7 @@
 The `docblock` package reads and parses documentation from C++ header files.
 It should also work out of the box for C header files, but that is currently untested.
 It is opinionated and explicitly does *not* cover all edge cases of the C++ grammar, but hopes to provide sufficient utility for most use cases.
-The package assumes documentation blocks are formatted as follows:
+The package assumes documentation blocks are formatted using C-style comments, as follows:
 ```cpp
 /**
  * Text
@@ -15,7 +15,8 @@ The package assumes documentation blocks are formatted as follows:
 void func();
 ```
 That is, the documentation block starts with `/*` or `/**`, and ends with `*/`.
-Any starting `*` on documentation lines in the block are allowed, but not required. 
+Any starting `*` on documentation lines in the block are allowed, but not required.
+> To avoid parsing issues, non-documentation block comments SHOULD NOT use C-style comments. 
 
 The `docblock` package is a pure Python package and depends only on `pyparsing`.
 It can be installed as
