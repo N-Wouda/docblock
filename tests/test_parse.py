@@ -38,3 +38,35 @@ def test_example_overload():
     }
 
     assert parse_file("tests/examples/overload.h") == expected
+
+
+def test_example_CostEvaluator():
+    """
+    Test a real-world example for PyVRP.
+    """
+    expected = {
+        "pyvrp::CostEvaluator": [
+            "Cost evaluator class that computes penalty values for timewarp "
+            "and load."
+        ],
+        "pyvrp::CostEvaluator::loadPenalty": [
+            "Computes the total excess capacity penalty for the given load."
+        ],
+        "pyvrp::CostEvaluator::loadPenaltyExcess": [
+            "Computes the excess capacity penalty for the given excess load, "
+            "that is,\nthe part of the load that exceeds the capacity."
+        ],
+        "pyvrp::CostEvaluator::twPenalty": [
+            "Computes the time warp penalty for the given time warp."
+        ],
+        "pyvrp::CostEvaluator::penalisedCost": [
+            "Computes a smoothed objective (penalised cost) for a given "
+            "solution."
+        ],
+        "pyvrp::CostEvaluator::cost": [
+            "Computes the objective for a given solution. Returns the "
+            "largest\nrepresentable cost value if the solution is infeasible."
+        ],
+    }
+
+    assert parse_file("tests/examples/CostEvaluator.h") == expected

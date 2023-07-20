@@ -14,7 +14,10 @@ CLOSE_STMT = pp.Literal(";")
 # but seem to work well.
 NAMESPACE = pp.Keyword("namespace").suppress() + QUALIFIED_ID
 CLASS = (pp.Keyword("struct") | pp.Keyword("class")).suppress() + QUALIFIED_ID
-FUNC = QUALIFIED_ID + (LPAR + ... + CLOSE_STMT).suppress() + CLOSE_STMT
+
+# Exclude braces: we only want the delcarations, not any implementations.
+# Assumes those are separated.
+FUNC = QUALIFIED_ID + (LPAR + ... + RPAR + ID[...] + CLOSE_STMT).suppress()
 
 # Line comment and documentation blocks.
 LINE_COMMENT = pp.dbl_slash_comment
