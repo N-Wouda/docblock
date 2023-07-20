@@ -6,10 +6,10 @@ from docblock.grammar import (
     CLASS,
     DOCBLOCK,
     FUNC,
-    ITEMS,
     LBRACE,
     NAMESPACE,
     RBRACE,
+    SYNTAX,
 )
 
 _ParsedType = Dict[str, List[str]]
@@ -29,8 +29,8 @@ def parse_file(loc: Union[pathlib.Path, str]) -> _ParsedType:
     -------
     dict
         A dictionary of functional end point (keys) to documentation blocks
-        (values) that were encountered. There may be multiple documentation
-        blocks for the same functional end point in case of overloads.
+        (values) that were encountered. In case of overloads, there may be
+        multiple documentation blocks for the same functional end point.
     """
     with open(loc, "r") as fh:
         code = fh.read()
@@ -51,33 +51,33 @@ def parse(code: str) -> _ParsedType:
     -------
     dict
         A dictionary of functional end point (keys) to documentation blocks
-        (values) that were encountered. There may be multiple documentation
-        blocks for the same functional end point in case of overloads.
+        (values) that were encountered. In case of overloads, there may be
+        multiple documentation blocks for the same functional end point.
     """
     result: _ParsedType = defaultdict(list)
     namespace = []
     last_id = None
     docblock = None
 
-    for match, start, end in ITEMS.scan_string(code):
-        segment = code[start:end]
-        name = match[-1]
+    for match, start, end in SYNTAX.scan_string(code):
+        raw = code[start:end]
+        parsed = match[-1]
 
-        if any(item.matches(segment) for item in [NAMESPACE, CLASS, FUNC]):
-            last_id = name
+        if any(matcher.matches(raw) for matcher in [NAMESPACE, CLASS, FUNC]):
+            last_id = parsed
 
             if docblock is not None:
                 where = "::".join([*namespace, last_id])
                 result[where].append(docblock)
                 docblock = None
 
-        if LBRACE.matches(segment):
+        if LBRACE.matches(raw):
             namespace.append(last_id)
 
-        if RBRACE.matches(segment):
+        if RBRACE.matches(raw):
             namespace.pop()
 
-        if DOCBLOCK.matches(segment):
-            docblock = name
+        if DOCBLOCK.matches(raw):
+            docblock = parsed
 
     return result
