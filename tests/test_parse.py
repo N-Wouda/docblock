@@ -1,4 +1,4 @@
-from docblock import parse, parse_file
+from docblock.parse import parse, parse_file
 
 
 def test_parse_empty_string_returns_empty():

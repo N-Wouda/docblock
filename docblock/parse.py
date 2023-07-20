@@ -11,6 +11,7 @@ from docblock.grammar import (
     RBRACE,
     SYNTAX,
 )
+from docblock.utils import strip_doc
 
 _ParsedType = Dict[str, List[str]]
 
@@ -60,8 +61,10 @@ def parse(code: str) -> _ParsedType:
     docblock = None
 
     for match, start, end in SYNTAX.scan_string(code):
+        assert len(match) == 1
+
+        parsed = match[0]
         raw = code[start:end]
-        parsed = match[-1]
 
         if any(matcher.matches(raw) for matcher in [NAMESPACE, CLASS, FUNC]):
             last_id = parsed
@@ -78,6 +81,6 @@ def parse(code: str) -> _ParsedType:
             namespace.pop()
 
         if DOCBLOCK.matches(raw):
-            docblock = parsed
+            docblock = strip_doc(parsed)
 
     return result

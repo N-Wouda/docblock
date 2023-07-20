@@ -10,16 +10,16 @@ LPAR, RPAR = pp.Literal("("), pp.Literal(")")
 LBRACE, RBRACE = pp.Literal("{"), pp.Literal("}")
 CLOSE_STMT = pp.Literal(";")
 
-LINE_COMMENT = pp.Literal("//") + pp.rest_of_line
 
 # Namespace, class (struct) and function definitions. These are fairly crude
 # but seem to work well.
-NAMESPACE = pp.Keyword("namespace") + QUALIFIED_ID
-CLASS = (pp.Keyword("struct") | pp.Keyword("class")) + QUALIFIED_ID
+NAMESPACE = pp.Keyword("namespace").suppress() + QUALIFIED_ID
+CLASS = (pp.Keyword("struct") | pp.Keyword("class")).suppress() + QUALIFIED_ID
 FUNC = QUALIFIED_ID + (LPAR + ... + CLOSE_STMT).suppress()
 
-# Documentation block.
-DOCBLOCK = pp.Combine(pp.Literal("/*") + ... + pp.Literal("*/"))
+# Line comment and documentation blocks.
+LINE_COMMENT = pp.dbl_slash_comment
+DOCBLOCK = pp.c_style_comment
 
 # Complete syntax we match on, ignoring (end-of-)line comments.
 _ITEMS = NAMESPACE | CLASS | FUNC | LBRACE | RBRACE | DOCBLOCK
