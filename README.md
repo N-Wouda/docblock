@@ -24,7 +24,50 @@ pip install docblock
 
 ## Example usage
 
-TODO
+Consider the following header file `test.h`:
+```cpp
+// test.h
+
+/**
+ * Test namespace.
+ */
+namespace test
+{
+class Test
+{
+public:
+    /**
+     * First constructor
+     */
+    Test(int x);
+
+    /**
+     * Second constructor
+     */
+    Test(int x, int y);
+
+    /**
+     * A method.
+     */
+    void aMethod() const;
+}
+};  // namespace test
+```
+This file may be parsed as
+```python
+from docblock import parse_file
+
+res = parse_file("test.h")
+```
+This is pretty-printed as
+```python
+>>> print(res)
+{'test': ['Test namespace.'],
+             'test::Test::Test': ['First constructor', 'Second constructor'],
+             'test::Test::aMethod': ['A method.']}
+```
+Observe that `docblock` understands scoping, and returns docstrings using qualified names.
+For overloads, multiple docstrings are returned: one for each documented overload.
 
 ## Why `docblock`?
 

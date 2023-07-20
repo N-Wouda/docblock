@@ -70,3 +70,12 @@ def test_example_CostEvaluator():
     }
 
     assert parse_file("tests/examples/CostEvaluator.h") == expected
+
+
+def test_example_readme():
+    expected = {
+        "test": ["Test namespace."],
+        "test::Test::Test": ["First constructor", "Second constructor"],
+        "test::Test::aMethod": ["A method."],
+    }
+    assert parse_file("tests/examples/readme.h") == expected
