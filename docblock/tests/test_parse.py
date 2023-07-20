@@ -9,6 +9,7 @@ def test_example_namespace():
     expected = {
         "test::Test": ["Class documentation"],
         "test::Test::test": ["Test docstring"],
+        "test::Test::other": ["Short one-line docstring."],
     }
 
     assert parse_file("docblock/tests/examples/namespace.h") == expected

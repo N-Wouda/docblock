@@ -12,5 +12,8 @@ class Test
      * Test docstring
      */
     void test() const;
+
+    /* Short one-line docstring. */
+    void other();
 }
 };  // namespace test

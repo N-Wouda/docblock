@@ -12,16 +12,27 @@ It can be installed as
 pip install docblock
 ``` 
 
+The package is somewhat opinionated about what documentation blocks look like.
+It assumes they are formatted as follows:
+```cpp
+/**
+ * Text
+ */
+void func();
+```
+That is, the documentation block starts with `/*` or `/**`, and ends with `*/`.
+Any starting `*` on documentation lines in the block are allowed, but not required. 
+
 ## Example usage
 
 TODO
 
 ## Why `docblock`?
 
-Parsing documentation from header files is common practice to generate documentation.
-One such tool is [pybind11_mkdoc](https://github.com/pybind/pybind11_mkdoc).
+Parsing documentation from header files is common practice to generate documentation, particularly in mixed-language projects where the C or C++ components are intended to be used from another language.
+One tool that simplifies this for C++-to-Python is [pybind11_mkdoc](https://github.com/pybind/pybind11_mkdoc).
 That tool, however, relies on clang and the LLVM project to parse C++ documentation blocks: great if you're already using clang, but very heavy-handed if you do not.
 
 This is where `docblock` comes in: it is a pure Python package that does not aim to parse all of C and C++'s grammar, but only extracts the documentation block's content and the function point it documents.
-Since `docblock` does not understand much of the underlying language, it will very likely not parse all documentation blocks correctly.
-Feel free to open an issue if you have an example that is not parsed correctly.
+That is far easier to implement (not requiring a full compiler), but does mean it will very likely not parse all documentation blocks correctly.
+Feel free to open an issue if you have an example that is not parsed correctly by `docblock`.
