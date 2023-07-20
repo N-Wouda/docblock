@@ -1,5 +1,3 @@
-# Docblock
-
 [![PyPI version](https://badge.fury.io/py/docblock.svg)](https://badge.fury.io/py/docblock)
 [![CI](https://github.com/N-Wouda/docblock/actions/workflows/CI.yaml/badge.svg?branch=main)](https://github.com/N-Wouda/docblock/actions/workflows/CI.yaml)
 [![codecov](https://codecov.io/gh/N-Wouda/docblock/branch/main/graph/badge.svg?token=SWFVP2J84T)](https://codecov.io/gh/N-Wouda/docblock)
