@@ -15,6 +15,8 @@ class Test
 
     /* Short one-line docstring. */
     void other();
+
+    void noDocumentation();  // should not show up in parse result
 }
 };  // namespace test
 
