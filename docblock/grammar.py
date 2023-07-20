@@ -1,26 +1,17 @@
 import pyparsing as pp
 
-# Matches documentation blocks.
+ID = pp.Word(pp.identbodychars)
+QUALIFIED_ID = pp.Combine(pp.OneOrMore(pp.Optional(ID + "::") + ID))
+
+LPAR, RPAR = pp.Literal("("), pp.Literal(")")
+LBRACE, RBRACE = pp.Literal("{"), pp.Literal("}")
+CLOSE_STMT = pp.Literal(";")
+
+NAMESPACE = pp.Keyword("namespace") + QUALIFIED_ID
+CLASS = (pp.Keyword("struct") | pp.Keyword("class")) + QUALIFIED_ID
+FUNC = QUALIFIED_ID + (LPAR + ... + CLOSE_STMT).suppress()
+
 DOCBLOCK = pp.Combine(pp.Literal("/*") + ... + pp.Literal("*/"))
+COMMENT = pp.Literal("//") + pp.rest_of_line
 
-# Matches namespace declarations.
-NAMESPACE = (
-    pp.Suppress(pp.Keyword("namespace"))
-    + pp.Word(pp.identbodychars)
-    + pp.Supress("{")
-)
-
-# Matches class declarations.
-CLASS = (
-    pp.Suppress(pp.Keyword("class"))
-    + pp.Word(pp.identbodychars)
-    + pp.Supress("{")
-)
-
-# This could also match the class declaration, and then a whole bunch of stuff
-# up to the first function. We do not want that, so there should *not* be a
-# class keyword in front of the name.
-FUNC = ~pp.Keyword("class") + pp.Word(pp.identbodychars) + pp.Suppress("(")
-
-FUNCDOC = pp.Group(DOCBLOCK + ... + FUNC)
-CLASSDOC = pp.Group(DOCBLOCK + ... + CLASS)
+ITEMS = (NAMESPACE | CLASS | FUNC | LBRACE | RBRACE | DOCBLOCK).ignore(COMMENT)
