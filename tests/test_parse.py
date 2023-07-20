@@ -12,7 +12,7 @@ def test_example_namespace():
         "test::Test::other": ["Short one-line docstring."],
     }
 
-    assert parse_file("docblock/tests/examples/namespace.h") == expected
+    assert parse_file("tests/examples/namespace.h") == expected
 
 
 def test_example_multiline():
@@ -24,7 +24,7 @@ def test_example_multiline():
     ]
 
     expected = {"Test::test": ["\n".join(parts)]}
-    assert parse_file("docblock/tests/examples/multiline.h") == expected
+    assert parse_file("tests/examples/multiline.h") == expected
 
 
 def test_example_overload():
@@ -36,4 +36,4 @@ def test_example_overload():
         ]
     }
 
-    assert parse_file("docblock/tests/examples/overload.h") == expected
+    assert parse_file("tests/examples/overload.h") == expected
