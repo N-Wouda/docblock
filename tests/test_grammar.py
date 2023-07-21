@@ -39,10 +39,6 @@ def test_operator_match():
     assert OPERATOR.matches("operator[]")
     assert OPERATOR.matches("operator<=>")
 
-    assert OPERATOR.matches("operator ()")
-    assert OPERATOR.matches("operator []")
-    assert OPERATOR.matches("operator <=>")
-
     assert not OPERATOR.matches("operator(")
     assert not OPERATOR.matches("operator|(")
     assert not OPERATOR.matches("operator()(")

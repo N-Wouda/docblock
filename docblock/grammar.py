@@ -18,7 +18,8 @@ CLASS = (pp.Keyword("struct") | pp.Keyword("class")).suppress() + QUALIFIED_ID
 # Exclude braces: we only want the delcarations, not any implementations.
 # Assumes those are separated. Some special care is needed to match
 # "operator X" overloads.
-OPERATOR = "operator" + (pp.Word("<>!=&|*/+-~^", min=1, max=3) | "()" | "[]")
+_OP = pp.Word("<>!=&|*/+-~^", min=1, max=3) | "()" | "[]"
+OPERATOR = pp.Combine("operator" + _OP)
 FUNC_NAME = OPERATOR | QUALIFIED_ID
 FUNC = FUNC_NAME + (LPAR + ... + RPAR + ID[...] + CLOSE_STMT).suppress()
 
