@@ -16,8 +16,11 @@ NAMESPACE = pp.Keyword("namespace").suppress() + QUALIFIED_ID
 CLASS = (pp.Keyword("struct") | pp.Keyword("class")).suppress() + QUALIFIED_ID
 
 # Exclude braces: we only want the delcarations, not any implementations.
-# Assumes those are separated.
-FUNC = QUALIFIED_ID + (LPAR + ... + RPAR + ID[...] + CLOSE_STMT).suppress()
+# Assumes those are separated. Some special care is needed to match
+# "operator X" overloads.
+OPERATOR = "operator" + (pp.Word("<>!=&|*/+-~^", min=1, max=3) | "()" | "[]")
+FUNC_NAME = OPERATOR | QUALIFIED_ID
+FUNC = FUNC_NAME + (LPAR + ... + RPAR + ID[...] + CLOSE_STMT).suppress()
 
 # Line comment and documentation blocks.
 LINE_COMMENT = pp.dbl_slash_comment

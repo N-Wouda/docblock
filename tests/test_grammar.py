@@ -1,4 +1,4 @@
-from docblock.grammar import FUNC, ID, QUALIFIED_ID
+from docblock.grammar import FUNC, ID, OPERATOR, QUALIFIED_ID
 
 
 def test_id_match():
@@ -19,6 +19,30 @@ def test_qualified_id_match():
 
 
 def test_func_match():
+    # Basic function declarations: one name, some parens, and a semicolon.
     assert FUNC.matches("DynamicBitset(std::vector<Block> data);")
     assert FUNC.matches("count() const;")
     assert FUNC.matches("Matrix(size_t nRows, size_t nCols);")
+
+    # These are a bit harder, because the name is hard, or because there are
+    # multiple parens.
+    assert FUNC.matches("operator()(size_t row, size_t col);")
+    assert FUNC.matches("operator|(DynamicBitset const &other) const;")
+    assert FUNC.matches("operator~() const;")
+
+
+def test_operator_match():
+    assert OPERATOR.matches("operator~")
+    assert OPERATOR.matches("operator|")
+    assert OPERATOR.matches("operator||")
+    assert OPERATOR.matches("operator()")
+    assert OPERATOR.matches("operator[]")
+    assert OPERATOR.matches("operator<=>")
+
+    assert OPERATOR.matches("operator ()")
+    assert OPERATOR.matches("operator []")
+    assert OPERATOR.matches("operator <=>")
+
+    assert not OPERATOR.matches("operator(")
+    assert not OPERATOR.matches("operator|(")
+    assert not OPERATOR.matches("operator()(")
