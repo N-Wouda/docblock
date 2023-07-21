@@ -4,7 +4,7 @@ import pyparsing as pp
 # namespace. In the latter case the name consists of multiple parts separated
 # by "::".
 ID = pp.Word(pp.identbodychars)
-QUALIFIED_ID = pp.Combine(pp.OneOrMore(pp.Optional(ID + "::") + ID))
+QUALIFIED_ID = pp.Combine(pp.OneOrMore(pp.Optional("::") + ID))
 
 LPAR, RPAR = pp.Literal("("), pp.Literal(")")
 LBRACE, RBRACE = pp.Literal("{"), pp.Literal("}")
