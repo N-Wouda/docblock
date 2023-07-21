@@ -4,7 +4,7 @@ def strip_doc(doc: str) -> str:
     any continuation in multiline blocks. For example,
     ```
     /**
-     *  Test
+     * Test
      */
     ```
     is stripped to ``Test``.
