@@ -1,4 +1,4 @@
-from docblock.grammar import FUNC, ID, OPERATOR, QUALIFIED_ID
+from docblock.grammar import CLASS, FUNC, ID, OPERATOR, QUALIFIED_ID
 
 
 def test_id_match():
@@ -42,3 +42,9 @@ def test_operator_match():
     assert not OPERATOR.matches("operator(")
     assert not OPERATOR.matches("operator|(")
     assert not OPERATOR.matches("operator()(")
+
+
+def test_class_match():
+    assert CLASS.matches("class Route")
+    assert CLASS.matches("struct Route")
+    assert CLASS.matches("struct alignas(16) Route")

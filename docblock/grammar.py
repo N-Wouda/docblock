@@ -3,7 +3,7 @@ import pyparsing as pp
 # Names in C++ can either be standalone, or fully qualified parts of a
 # namespace. In the latter case the name consists of multiple parts separated
 # by "::".
-ID = pp.Word(pp.identbodychars)
+ID = pp.Word(pp.identchars)
 QUALIFIED_ID = pp.Combine(pp.OneOrMore(pp.Optional("::") + ID))
 
 LPAR, RPAR = pp.Literal("("), pp.Literal(")")
