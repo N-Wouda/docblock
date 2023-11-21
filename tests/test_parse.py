@@ -95,3 +95,11 @@ def test_example_diversity():
     }
 
     assert parse_file("tests/examples/diversity.h") == expected
+
+
+def test_example_alignas():
+    expected = {
+        "Foo::bar": ["A documentation block describing Foo::bar."],
+    }
+
+    assert parse_file("tests/examples/alignas.h") == expected
