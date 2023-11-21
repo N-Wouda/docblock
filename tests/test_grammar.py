@@ -45,6 +45,9 @@ def test_operator_match():
 
 
 def test_class_match():
+    # Basic classes and struct definitions.
     assert CLASS.matches("class Route")
     assert CLASS.matches("struct Route")
+
+    # A bit harder, due to the alignment in between.
     assert CLASS.matches("struct alignas(16) Route")
