@@ -31,6 +31,15 @@ def test_func_match():
     assert FUNC.matches("operator~() const;")
 
 
+def test_func_matches_complicated():
+    assert FUNC.matches(
+        """
+        timeWarp(Duration const maxDuration
+                 = std::numeric_limits<Duration>::max()) const;
+        """
+    )
+
+
 def test_operator_match():
     assert OPERATOR.matches("operator~")
     assert OPERATOR.matches("operator|")

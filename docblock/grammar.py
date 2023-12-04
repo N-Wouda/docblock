@@ -23,7 +23,8 @@ CLASS = CLASS_KW.suppress() + ALIGNAS[0, 1].suppress() + QUALIFIED_ID
 _OP = pp.Word("<>!=&|*/+-~^", min=1, max=3) | "()" | "[]"
 OPERATOR = pp.Combine("operator" + _OP)
 FUNC_NAME = OPERATOR | QUALIFIED_ID
-FUNC = FUNC_NAME + (LPAR + ... + RPAR + ID[...] + CLOSE_STMT).suppress()
+ARG_LIST = LPAR + ... + RPAR[1, ...]
+FUNC = FUNC_NAME + (ARG_LIST + ID[...] + CLOSE_STMT).suppress()
 
 # Line comment and documentation blocks.
 LINE_COMMENT = pp.dbl_slash_comment
