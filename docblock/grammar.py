@@ -24,7 +24,7 @@ _OP = pp.Word("<>!=&|*/+-~^", min=1, max=3) | "()" | "[]"
 OPERATOR = pp.Combine("operator" + _OP)
 FUNC_NAME = OPERATOR | QUALIFIED_ID
 FUNC_OPEN = FUNC_NAME + LPAR.suppress()
-FUNC_CLOSE = RPAR + ... + CLOSE_STMT
+FUNC_CLOSE = RPAR + pp.SkipTo(CLOSE_STMT, fail_on=pp.Literal("{")) + CLOSE_STMT
 FUNC = FUNC_OPEN + (... + FUNC_CLOSE).suppress()
 
 # Line comment and documentation blocks.

@@ -103,3 +103,9 @@ def test_example_alignas():
     }
 
     assert parse_file("tests/examples/alignas.h") == expected
+
+
+def test_DynamicBitset():
+    expected = {"pyvrp::DynamicBitset": ["DynamicBitset(num_bits: int)"]}
+
+    assert parse_file("tests/examples/DynamicBitset.h") == expected

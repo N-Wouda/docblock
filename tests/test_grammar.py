@@ -53,6 +53,14 @@ def test_func_matches_complicated():
         """
     )
 
+    assert not FUNC.matches(
+        """
+        operator[](size_t idx) const
+        {
+            auto const q = idx / BLOCK_SIZE;
+        """
+    )
+
 
 def test_operator_match():
     assert OPERATOR.matches("operator~")
