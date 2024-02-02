@@ -23,7 +23,8 @@ CLASS = CLASS_KW.suppress() + ALIGNAS[0, 1].suppress() + QUALIFIED_ID
 _OP = pp.Word("<>!=&|*/+-~^", min=1, max=3) | "()" | "[]"
 OPERATOR = pp.Combine("operator" + _OP)
 FUNC_NAME = OPERATOR | QUALIFIED_ID
-ARG_LIST = LPAR + ... + RPAR[1, ...]
+LAST_RPAR = RPAR + ~pp.FollowedBy(pp.Word("),"))
+ARG_LIST = LPAR + ... + LAST_RPAR
 FUNC = FUNC_NAME + (ARG_LIST + ID[...] + CLOSE_STMT).suppress()
 
 # Line comment and documentation blocks.

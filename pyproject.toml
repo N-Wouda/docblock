@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "docblock"
-version = "0.1.4"
+version = "0.1.5"
 description = "Reads and parses documentation from header files in pure Python."
 authors = ["Niels Wouda <nielswouda@gmail.com>"]
 license = "MIT"
