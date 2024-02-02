@@ -9,6 +9,8 @@ QUALIFIED_ID = pp.Combine(pp.OneOrMore(pp.Optional("::") + ID))
 LPAR, RPAR = pp.Literal("("), pp.Literal(")")
 LBRACE, RBRACE = pp.Literal("{"), pp.Literal("}")
 CLOSE_STMT = pp.Literal(";")
+OVERRIDE = pp.Literal("override")
+CONST = pp.Literal("const")
 
 # Namespace and class (struct) definitions. These are fairly crude but seem to
 # work well enough.
@@ -23,8 +25,9 @@ CLASS = CLASS_KW.suppress() + ALIGNAS[0, 1].suppress() + QUALIFIED_ID
 _OP = pp.Word("<>!=&|*/+-~^", min=1, max=3) | "()" | "[]"
 OPERATOR = pp.Combine("operator" + _OP)
 FUNC_NAME = OPERATOR | QUALIFIED_ID
-ARG_LIST = LPAR + ... + RPAR[1, ...]
-FUNC = FUNC_NAME + (ARG_LIST + ID[...] + CLOSE_STMT).suppress()
+FUNC_OPEN = FUNC_NAME + LPAR.suppress()
+FUNC_CLOSE = RPAR + OVERRIDE[0, 1] + CONST[0, 1] + OVERRIDE[0, 1] + CLOSE_STMT
+FUNC = FUNC_OPEN + (... + FUNC_CLOSE).suppress()
 
 # Line comment and documentation blocks.
 LINE_COMMENT = pp.dbl_slash_comment

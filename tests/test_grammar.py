@@ -24,11 +24,17 @@ def test_func_match():
     assert FUNC.matches("count() const;")
     assert FUNC.matches("Matrix(size_t nRows, size_t nCols);")
 
+    assert FUNC.matches("bpd(Solution const &first, Solution const &second);")
+
     # These are a bit harder, because the name is hard, or because there are
-    # multiple parens.
+    # multiple parentheses.
     assert FUNC.matches("operator()(size_t row, size_t col);")
-    assert FUNC.matches("operator|(DynamicBitset const &other) const;")
+    assert FUNC.matches("operator|(pyvrp::DynamicBitset const &other) const;")
     assert FUNC.matches("operator~() const;")
+
+    # Both orderings (const override, and override const) should be accepted.
+    assert FUNC.matches("apply(Node *U, Node *V) const override;")
+    assert FUNC.matches("apply(Node *U, Node *V) override const;")
 
 
 def test_func_matches_complicated():
@@ -36,6 +42,14 @@ def test_func_matches_complicated():
         """
         timeWarp(Duration const maxDuration
                  = std::numeric_limits<Duration>::max()) const;
+        """
+    )
+
+    assert FUNC.matches(
+        """
+        timeWarp(Duration const maxDuration
+                 = std::numeric_limits<Duration>::max(),
+                 Duration const maxOvertime = 0) const;
         """
     )
 
