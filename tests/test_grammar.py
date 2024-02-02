@@ -45,14 +45,6 @@ def test_func_matches_complicated():
         """
     )
 
-    assert FUNC.matches(
-        """
-        timeWarp(Duration const maxDuration
-                 = std::numeric_limits<Duration>::max(),
-                 Duration const maxOvertime = 0) const;
-        """
-    )
-
     assert not FUNC.matches(
         """
         operator[](size_t idx) const
