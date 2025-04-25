@@ -18,12 +18,12 @@ classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Topic :: Software Development",
 ]
+requires-python = ">=3.8"
 
 [tool.poetry.urls]
 "Tracker" = "https://github.com/N-Wouda/docblock/issues"
 
 [tool.poetry.dependencies]
-python = "^3.8"
 pyparsing = "^3.0.6"
 
 [tool.poetry.group.dev.dependencies]
