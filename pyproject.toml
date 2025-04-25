@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "docblock"
-version = "0.1.5"
+version = "0.1.6"
 description = "Reads and parses documentation from header files in pure Python."
 authors = ["Niels Wouda <nielswouda@gmail.com>"]
 license = "MIT"
@@ -23,7 +23,7 @@ classifiers = [
 "Tracker" = "https://github.com/N-Wouda/docblock/issues"
 
 [tool.poetry.dependencies]
-python = "^3.8, <4.0"
+python = "^3.8"
 pyparsing = "^3.0.6"
 
 [tool.poetry.group.dev.dependencies]
