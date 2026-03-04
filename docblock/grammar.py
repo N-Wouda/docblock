@@ -25,8 +25,7 @@ OPERATOR = pp.Combine("operator" + _OP)
 FUNC_NAME = OPERATOR | QUALIFIED_ID
 LAST_RPAR = RPAR + ~pp.FollowedBy(pp.Word("),"))
 ARG_LIST = LPAR + ... + LAST_RPAR
-BODY = pp.Optional(LBRACE + ... + RBRACE)
-FUNC = FUNC_NAME + (ARG_LIST + ID[...] + BODY + CLOSE_STMT).suppress()
+FUNC = FUNC_NAME + (ARG_LIST + ID[...] + CLOSE_STMT).suppress()
 
 # Line comment and documentation blocks.
 LINE_COMMENT = pp.dbl_slash_comment
