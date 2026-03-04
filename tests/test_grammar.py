@@ -36,6 +36,10 @@ def test_func_match():
     assert FUNC.matches("apply(Node *U, Node *V) const override;")
     assert FUNC.matches("apply(Node *U, Node *V) override const;")
 
+    # Function declarations with immediate implementation.
+    assert FUNC.matches("onStart(Solution const &initial) {};")
+    assert FUNC.matches("onStart() { int x = 1; Route::Node y; };")
+
 
 def test_func_matches_complicated():
     assert FUNC.matches(
