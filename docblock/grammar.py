@@ -17,7 +17,7 @@ ALIGNAS = pp.Literal("alignas") + LPAR + ... + RPAR
 CLASS_KW = pp.Keyword("struct") | pp.Keyword("class")
 CLASS = CLASS_KW.suppress() + ALIGNAS[0, 1].suppress() + QUALIFIED_ID
 
-# Exclude braces: we only want the delcarations, not any implementations.
+# Exclude braces: we only want the declarations, not any implementations.
 # Assumes those are separated. Some special care is needed to match
 # "operator X" overloads.
 _OP = pp.Word("<>!=&|*/+-~^", min=1, max=3) | "()" | "[]"
@@ -25,7 +25,8 @@ OPERATOR = pp.Combine("operator" + _OP)
 FUNC_NAME = OPERATOR | QUALIFIED_ID
 LAST_RPAR = RPAR + ~pp.FollowedBy(pp.Word("),"))
 ARG_LIST = LPAR + ... + LAST_RPAR
-FUNC = FUNC_NAME + (ARG_LIST + ID[...] + CLOSE_STMT).suppress()
+BODY = pp.Optional(LBRACE + ... + RBRACE)
+FUNC = FUNC_NAME + (ARG_LIST + ID[...] + BODY + CLOSE_STMT).suppress()
 
 # Line comment and documentation blocks.
 LINE_COMMENT = pp.dbl_slash_comment

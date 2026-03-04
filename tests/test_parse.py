@@ -103,3 +103,11 @@ def test_example_alignas():
     }
 
     assert parse_file("tests/examples/alignas.h") == expected
+
+
+def test_example_virtualfunc():
+    expected = {
+        "Callbacks::onStart": ["Called at search start."],
+    }
+
+    assert parse_file("tests/examples/virtualfunc.h") == expected
